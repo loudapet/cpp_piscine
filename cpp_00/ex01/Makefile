@@ -6,7 +6,7 @@
 #    By: plouda <plouda@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/16 10:28:25 by plouda            #+#    #+#              #
-#    Updated: 2024/02/19 10:32:22 by plouda           ###   ########.fr        #
+#    Updated: 2024/02/28 12:09:23 by plouda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,9 +22,9 @@ COMP = c++ -g -Wall -Wextra -Werror -std=c++98
 
 #HEADERS = -I ./include/
 
-GREEN		=	$(shell printf "\033[0;32m")
-YELLOW		=	$(shell printf "\033[0;33m")
-CYAN		=	$(shell printf "\033[0;36m")
+GREEN		=	$(shell printf "\033[1;32m")
+YELLOW		=	$(shell printf "\033[1;33m")
+CYAN		=	$(shell printf "\033[1;36m")
 RESET		=	$(shell printf "\033[0m")
 
 all: $(NAME)

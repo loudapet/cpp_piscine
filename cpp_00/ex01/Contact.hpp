@@ -6,7 +6,7 @@
 /*   By: plouda <plouda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 15:00:11 by plouda            #+#    #+#             */
-/*   Updated: 2024/02/26 16:51:16 by plouda           ###   ########.fr       */
+/*   Updated: 2024/02/28 14:04:35 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,18 @@ class Contact
 	public:
 		Contact();
 		~Contact();
-		int		setFirstName(void);
-		int		setLastName(void);
-		int		setNickname(void);
-		int		setPhoneNumber(void);
-		int		setDarkestSecret(void);
-		void	resetContact(void);
+		int			setFirstName(void);
+		int			setLastName(void);
+		int			setNickname(void);
+		int			setPhoneNumber(void);
+		int			setDarkestSecret(void);
+		void		resetContact(void);
 		std::string	getFirstName() const;
 		std::string	getLastName() const;
 		std::string	getNickname() const;
 		std::string	getPhoneNumber() const;
 		std::string	getDarkestSecret() const;
-		void	displayContactData() const;
+		void		displayContactData() const;
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: plouda <plouda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 13:27:48 by plouda            #+#    #+#             */
-/*   Updated: 2024/02/26 16:44:28 by plouda           ###   ########.fr       */
+/*   Updated: 2024/02/28 14:05:01 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,15 @@ class PhoneBook
 	private:
 		Contact	_contactList[8];
 
-		//Contact	*_getContact(int index);
-		Contact	_getContact(int index) const;
 		void	_displayHeader() const;
 		void	_displayPhonebookDataAsList(std::string string) const;
 		int		_retrieveIndexFromUser(void) const;
+		void	_shiftContactDataQueue();
 
 	public:
 		PhoneBook();
 		~PhoneBook();
-		void	addContact(int *index);
+		void	addContact();
 		void	displayContactList(void) const;
 };
 
