@@ -6,7 +6,7 @@
 /*   By: plouda <plouda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 15:00:11 by plouda            #+#    #+#             */
-/*   Updated: 2024/02/28 14:04:35 by plouda           ###   ########.fr       */
+/*   Updated: 2024/02/29 10:51:04 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ class Contact
 		int			setNickname(void);
 		int			setPhoneNumber(void);
 		int			setDarkestSecret(void);
-		void		resetContact(void);
 		std::string	getFirstName() const;
 		std::string	getLastName() const;
 		std::string	getNickname() const;

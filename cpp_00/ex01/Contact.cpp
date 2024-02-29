@@ -6,7 +6,7 @@
 /*   By: plouda <plouda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 15:00:20 by plouda            #+#    #+#             */
-/*   Updated: 2024/02/28 14:34:30 by plouda           ###   ########.fr       */
+/*   Updated: 2024/02/29 10:50:59 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,15 +146,6 @@ int	Contact::setDarkestSecret(void)
 		}
 	} while (_darkestSecret == "");
 	return (0);
-}
-
-void	Contact::resetContact()
-{
-	_lastName = "";
-	_firstName = "";
-	_nickname = "";
-	_phoneNumber = "";
-	_darkestSecret = "";
 }
 
 std::string	Contact::getFirstName() const
