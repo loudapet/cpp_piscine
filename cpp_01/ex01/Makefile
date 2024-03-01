@@ -6,14 +6,13 @@
 #    By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/16 10:28:25 by plouda            #+#    #+#              #
-#    Updated: 2024/03/01 11:36:40 by plouda           ###   ########.fr        #
+#    Updated: 2024/03/01 11:54:32 by plouda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME =	Zombie
 SRCS =	main.cpp \
-		newZombie.cpp \
-		randomChump.cpp \
+		zombieHorde.cpp \
 		Zombie.cpp
 		
 

@@ -6,15 +6,12 @@
 #    By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/16 10:28:25 by plouda            #+#    #+#              #
-#    Updated: 2024/03/01 11:36:40 by plouda           ###   ########.fr        #
+#    Updated: 2024/03/01 12:50:21 by plouda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME =	Zombie
-SRCS =	main.cpp \
-		newZombie.cpp \
-		randomChump.cpp \
-		Zombie.cpp
+NAME =	string
+SRCS =	main.cpp
 		
 
 #SRCS_DIR = ./src
@@ -22,7 +19,7 @@ BUILD_DIR = ./obj
 OBJS = $(addprefix $(BUILD_DIR)/, $(SRCS))
 OBJS := $(OBJS:.cpp=.o)
 #SRCS := $(addprefix $(SRCS_DIR)/, $(SRCS))
-HEADERS = -I Zombie.hpp
+#HEADERS = -I Zombie.hpp
 
 COMP = c++ -g -Wall -Wextra -Werror -std=c++98
 
@@ -41,7 +38,7 @@ $(NAME): $(OBJS)
 	@echo "$(GREEN)Compilation of '${NAME}' successful.$(RESET)"
 
 obj/%.o: %.cpp | objdir
-	@$(COMP) -c $< -o $@ $(HEADERS)
+	@$(COMP) -c $< -o $@
 
 objdir:
 	@mkdir -p obj

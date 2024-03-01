@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   zombieHorde.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/01 10:16:49 by plouda            #+#    #+#             */
-/*   Updated: 2024/03/01 11:40:28 by plouda           ###   ########.fr       */
+/*   Created: 2024/03/01 11:54:21 by plouda            #+#    #+#             */
+/*   Updated: 2024/03/01 12:41:40 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
+#include <sstream>
 
-Zombie::Zombie(std::string string) : name(string)
+Zombie* zombieHorde( int N, std::string name )
 {
-	return ;
-}
+	Zombie	*horde;
+	//std::stringstream	stream;
 
-void	Zombie::announce(void)
-{
-	std::cout << this->name << ": " << "BraiiiiiiinnnzzzZ..." << std::endl;
-}
-
-Zombie::~Zombie()
-{
-	std::cout << this->name << " destroyed" << std::endl;
-	return ;
+	horde = new Zombie[N];
+	for (int i = 0 ; i < N ; i++)
+	{
+		//stream << i;
+		//horde[i].setName(name + stream.str());
+		horde[i].setName(name);
+		//horde[i].announce();
+		//stream.str("");
+	}
+	return (horde);
 }

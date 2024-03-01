@@ -6,7 +6,7 @@
 /*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 10:16:55 by plouda            #+#    #+#             */
-/*   Updated: 2024/03/01 10:46:37 by plouda           ###   ########.fr       */
+/*   Updated: 2024/03/01 11:38:28 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,8 @@ class Zombie
 		~Zombie();
 		void	announce(void);
 };
+
+Zombie*	newZombie( std::string name );
+void randomChump( std::string name );
 
 #endif
