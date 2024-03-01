@@ -6,7 +6,7 @@
 #    By: plouda <plouda@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/16 10:28:25 by plouda            #+#    #+#              #
-#    Updated: 2024/02/29 13:15:09 by plouda           ###   ########.fr        #
+#    Updated: 2024/03/01 09:50:26 by plouda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,11 +17,8 @@ BUILD_DIR = ./obj
 OBJS = $(addprefix $(BUILD_DIR)/, $(SRCS))
 OBJS := $(OBJS:.cpp=.o)
 HEADERS = -I Account.hpp
-#SRCS := $(addprefix $(SRCS_DIR)/, $(SRCS))
 
 COMP = c++ -g -Wall -Wextra -Werror -std=c++98
-
-#HEADERS = -I ./include/
 
 GREEN		=	$(shell printf "\033[1;32m")
 YELLOW		=	$(shell printf "\033[1;33m")
@@ -33,11 +30,11 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@echo "$(YELLOW)Initiating compilation of '${NAME}'$(RESET)"
 	@echo "$(YELLOW)Linking objects...$(RESET)"
-	@$(COMP) $(OBJS) $(HEADERS) -o ${NAME}
+	@$(COMP) $(OBJS) -o ${NAME}
 	@echo "$(GREEN)Compilation of '${NAME}' successful.$(RESET)"
 
 obj/%.o: %.cpp | objdir
-	@$(COMP) -c $< -o $@
+	@$(COMP) -c $< -o $@ $(HEADERS)
 
 objdir:
 	@mkdir -p obj
