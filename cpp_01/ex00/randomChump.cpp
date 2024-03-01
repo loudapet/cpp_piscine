@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   megaphone.cpp                                      :+:      :+:    :+:   */
+/*   randomChump.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/16 10:35:57 by plouda            #+#    #+#             */
-/*   Updated: 2024/03/01 11:23:22 by plouda           ###   ########.fr       */
+/*   Created: 2024/03/01 10:17:49 by plouda            #+#    #+#             */
+/*   Updated: 2024/03/01 10:46:38 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
+#include "Zombie.hpp"
 
-int main(int argc, char **argv)
+void randomChump( std::string name )
 {
-	if (argc == 1)
-		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
-	else if (argc >= 2)
-		for (int i = 1 ; argv[i] ; i++)
-			for (int j = 0 ; argv[i][j] ; j++)
-				std::cout << (char)std::toupper(argv[i][j]);
-	std::cout << std::endl;
-	return (0);
+	Zombie	newZombie(name);
+
+	newZombie.announce();
 }
