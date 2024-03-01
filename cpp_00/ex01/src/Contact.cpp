@@ -6,7 +6,7 @@
 /*   By: plouda <plouda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 15:00:20 by plouda            #+#    #+#             */
-/*   Updated: 2024/03/01 09:35:07 by plouda           ###   ########.fr       */
+/*   Updated: 2024/03/01 09:54:30 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,12 +111,6 @@ int	Contact::setPhoneNumber(void)
 			if (_phoneNumber.size() > 20)
 			{
 				std::cerr << YEL << "Number too long, try again" << CRESET << std::endl;
-				_phoneNumber = "";
-				break ;
-			}
-			if (_phoneNumber.size() < 9)
-			{
-				std::cerr << YEL << "Number too short, try again" << CRESET << std::endl;
 				_phoneNumber = "";
 				break ;
 			}
