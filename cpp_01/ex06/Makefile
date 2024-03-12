@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: plouda <plouda@student.42.fr>              +#+  +:+       +#+         #
+#    By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/16 10:28:25 by plouda            #+#    #+#              #
-#    Updated: 2024/03/08 11:38:14 by plouda           ###   ########.fr        #
+#    Updated: 2024/03/08 12:14:06 by plouda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ BUILD_DIR = ./obj
 OBJS = $(addprefix $(BUILD_DIR)/, $(SRCS))
 OBJS := $(OBJS:.cpp=.o)
 #SRCS := $(addprefix $(SRCS_DIR)/, $(SRCS))
-HEADERS = -I replace.hpp
+HEADERS = -I Harl.hpp
 
 COMP = c++ -g -Wall -Wextra -Werror -std=c++98
 
