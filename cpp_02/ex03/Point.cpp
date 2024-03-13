@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Point.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plouda <plouda@student.42.fr>              +#+  +:+       +#+        */
+/*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 09:41:28 by plouda            #+#    #+#             */
-/*   Updated: 2024/03/13 12:01:58 by plouda           ###   ########.fr       */
+/*   Updated: 2024/03/13 13:25:50 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ Point::Point(const Fixed& x, const Fixed& y): _x(x), _y(y)
 	return ;
 }
 
-Point::Point(const Point& refObj)
+Point::Point(const Point& refObj): _x(refObj.getX()), _y(refObj.getY())
 {
-	*this = refObj;
+	return ;
 }
 
 // Cannot assign const variables
