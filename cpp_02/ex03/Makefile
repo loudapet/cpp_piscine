@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+         #
+#    By: plouda <plouda@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/16 10:28:25 by plouda            #+#    #+#              #
-#    Updated: 2024/03/12 10:05:59 by plouda           ###   ########.fr        #
+#    Updated: 2024/03/13 12:14:32 by plouda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME =	Fixed
-SRCS =	main.cpp Fixed.cpp
+NAME =	bsp
+SRCS =	main.cpp Fixed.cpp Point.cpp bsp.cpp
 		
 
 #SRCS_DIR = ./src
@@ -19,7 +19,7 @@ BUILD_DIR = ./obj
 OBJS = $(addprefix $(BUILD_DIR)/, $(SRCS))
 OBJS := $(OBJS:.cpp=.o)
 #SRCS := $(addprefix $(SRCS_DIR)/, $(SRCS))
-HEADERS = -I Fixed.hpp
+HEADERS = -I Fixed.hpp -I Point.hpp
 
 COMP = c++ -g -Wall -Wextra -Werror -std=c++98
 
