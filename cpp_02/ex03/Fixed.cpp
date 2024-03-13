@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: plouda <plouda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 10:06:07 by plouda            #+#    #+#             */
-/*   Updated: 2024/03/12 16:44:26 by plouda           ###   ########.fr       */
+/*   Updated: 2024/03/13 13:54:24 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,12 +122,18 @@ bool	Fixed::operator!=(const Fixed& right) const
 
 Fixed	Fixed::operator+(const Fixed& right) const
 {
-	return (this->_value + right._value);
+	Fixed res;
+
+	res.setRawBits(this->getRawBits() + right.getRawBits());
+	return (res);
 }
 
 Fixed	Fixed::operator-(const Fixed& right) const
 {
-	return (this->_value - right._value);
+	Fixed res;
+
+	res.setRawBits(this->getRawBits() - right.getRawBits());
+	return (res);
 }
 
 Fixed	Fixed::operator*(const Fixed& right) const
