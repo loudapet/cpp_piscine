@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plouda <plouda@student.42.fr>              +#+  +:+       +#+        */
+/*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 13:40:15 by plouda            #+#    #+#             */
-/*   Updated: 2024/03/08 10:35:15 by plouda           ###   ########.fr       */
+/*   Updated: 2024/03/14 11:39:55 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ int	main(int argc, const char **argv)
 		return (EXIT_FAILURE);
 	else
 	{
-		ifs.open(std::string(argv[1]));
+		ifs.open(argv[1]);
 		if (!ifs.is_open())
 		{
 			std::cerr << "Invalid input file" << std::endl;
 			return (EXIT_FAILURE);
 		}
-		ofs.open(std::string(argv[1]) + ".replace");
+		ofs.open((std::string(argv[1]) + ".replace").c_str());
 		if (!ofs.is_open())
 		{
 			ifs.close();

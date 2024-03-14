@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plouda <plouda@student.42.fr>              +#+  +:+       +#+        */
+/*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:44:48 by plouda            #+#    #+#             */
-/*   Updated: 2024/03/08 11:32:37 by plouda           ###   ########.fr       */
+/*   Updated: 2024/03/14 11:43:55 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HARL_HPP
 # define HARL_HPP
-#include <iostream>
+# include <iostream>
+# include <stdlib.h>
 
 class Harl
 {

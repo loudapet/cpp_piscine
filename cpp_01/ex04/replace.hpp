@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   replace.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plouda <plouda@student.42.fr>              +#+  +:+       +#+        */
+/*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 13:41:24 by plouda            #+#    #+#             */
-/*   Updated: 2024/03/08 10:44:07 by plouda           ###   ########.fr       */
+/*   Updated: 2024/03/14 11:31:41 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <iostream>
 # include <fstream>
 # include <sstream>
+# include <stdlib.h>
 
 
 #endif
