@@ -6,7 +6,7 @@
 /*   By: plouda <plouda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 10:06:07 by plouda            #+#    #+#             */
-/*   Updated: 2024/03/13 13:54:24 by plouda           ###   ########.fr       */
+/*   Updated: 2024/03/13 15:54:09 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,8 @@ Fixed	Fixed::operator*(const Fixed& right) const
 {
 	Fixed	res;
 
-	res._value = (this->_value * right._value) >> _FRACTIONALBITS;
+	res.setRawBits((long long)this->getRawBits()
+		* (long long)right.getRawBits() >> _FRACTIONALBITS);
 	return (res);
 }
 
@@ -148,7 +149,8 @@ Fixed	Fixed::operator/(const Fixed& right) const
 {
 	Fixed	res;
 
-	res._value = this->_value / right._value << _FRACTIONALBITS;
+	res.setRawBits(((long long)this->_value << _FRACTIONALBITS)
+		/ right._value);
 	return (res);
 }
 
