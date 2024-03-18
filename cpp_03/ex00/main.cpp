@@ -6,7 +6,7 @@
 /*   By: plouda <plouda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 09:43:07 by plouda            #+#    #+#             */
-/*   Updated: 2024/03/15 12:31:49 by plouda           ###   ########.fr       */
+/*   Updated: 2024/03/18 09:28:35 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	takeAction(ClapTrap& clapTrap, ClapTrap& target, int action)
 		heal = rand() % 4 + 1;
 		clapTrap.beRepaired(heal);
 	}
-
 }
 
 void	fight(ClapTrap& player, ClapTrap& enemy)

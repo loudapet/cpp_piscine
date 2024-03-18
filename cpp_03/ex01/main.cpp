@@ -6,17 +6,18 @@
 /*   By: plouda <plouda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 09:43:07 by plouda            #+#    #+#             */
-/*   Updated: 2024/03/15 12:31:49 by plouda           ###   ########.fr       */
+/*   Updated: 2024/03/18 09:35:13 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
+# include "ClapTrap.hpp"
+# include "ScavTrap.hpp"
 # include <cstdlib>
 # include <ctime>
 
 void	displayAttributes(ClapTrap& clapTrap);
 
-void	takeAction(ClapTrap& clapTrap, ClapTrap& target, int action)
+void	takeActionClapTrap(ClapTrap& clapTrap, ScavTrap& target, int action)
 {
 	unsigned int	heal;
 	if (action == 1)
@@ -30,7 +31,38 @@ void	takeAction(ClapTrap& clapTrap, ClapTrap& target, int action)
 		heal = rand() % 4 + 1;
 		clapTrap.beRepaired(heal);
 	}
+}
 
+void	takeActionScavTrap(ScavTrap& scavTrap, ClapTrap& target, int action)
+{
+	unsigned int	heal;
+	if (action == 1)
+	{
+		scavTrap.attack(target.getName());
+		if (scavTrap.getEp() > 0)
+			target.takeDamage(scavTrap.getAd());
+	}
+	else if (action == 2)
+	{
+		heal = rand() % 4 + 1;
+		scavTrap.beRepaired(heal);
+	}
+}
+
+/* void	takeAction(ClapTrap& clapTrap, ClapTrap& target, int action)
+{
+	unsigned int	heal;
+	if (action == 1)
+	{
+		clapTrap.attack(target.getName());
+		if (clapTrap.getEp() > 0)
+			target.takeDamage(clapTrap.getAd());
+	}
+	else if (action == 2)
+	{
+		heal = rand() % 4 + 1;
+		clapTrap.beRepaired(heal);
+	}
 }
 
 void	fight(ClapTrap& player, ClapTrap& enemy)
@@ -58,6 +90,33 @@ void	fight(ClapTrap& player, ClapTrap& enemy)
 	else
 		winner = "Nobody";
 	std::cout << winner << "!!!" << std::endl;
+} */
+
+void	fightScavTrap(ClapTrap& player, ScavTrap& enemy)
+{
+	unsigned int	action;
+	std::string		winner;
+	unsigned int	round_counter = 1;
+
+	displayAttributes(player);
+	displayAttributes(enemy);
+	while ((player.getHp() > 0 && enemy.getHp() > 0)
+			&& (player.getEp() > 0 || enemy.getEp() > 0))
+	{
+		std::cout << "[ ROUND " << round_counter++ << " ]" << std::endl;
+		action = rand() % 2 + 1;
+		takeActionClapTrap(player, enemy, action);
+		action = rand() % 2 + 1;
+		takeActionScavTrap(enemy, player, action);
+	}
+	std::cout << "And the winner is..." << std::endl;
+	if (player.getHp() > 0 && enemy.getHp() <= 0)
+		winner = player.getName();
+	else if (enemy.getHp() > 0 && player.getHp() <= 0)
+		winner = enemy.getName();
+	else
+		winner = "Nobody";
+	std::cout << winner << "!!!" << std::endl;
 }
 
 void	displayAttributes(ClapTrap& clapTrap)
@@ -68,7 +127,7 @@ void	displayAttributes(ClapTrap& clapTrap)
 	std::cout << "AD: " << clapTrap.getAd() << std::endl;
 }
 
-void	setAttributes(ClapTrap& clapTrap)
+void	setRandomAttributes(ClapTrap& clapTrap)
 {
 	unsigned int	hp;
 	unsigned int	ep;
@@ -86,15 +145,16 @@ int	main()
 {
 	ClapTrap	Default("Mr. Default");
 	ClapTrap	Bill("Bill");
-	ClapTrap	Jake("Jake");
+	ScavTrap	Isabellle("Isabelle");
 		
 	std::srand(std::time(0));
-	setAttributes(Bill);
-	setAttributes(Jake);
-	fight(Bill, Jake);
+	Isabellle.guardGate();
+	setRandomAttributes(Bill);
+	setRandomAttributes(Isabellle);
+	//fight(Bill, Isabellle);
+	fightScavTrap(Bill, Isabellle);
 	displayAttributes(Bill);
-	displayAttributes(Jake);
-	
+	displayAttributes(Isabellle);
 
 	return (0);
 }

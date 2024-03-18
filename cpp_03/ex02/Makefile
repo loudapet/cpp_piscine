@@ -6,12 +6,12 @@
 #    By: plouda <plouda@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/16 10:28:25 by plouda            #+#    #+#              #
-#    Updated: 2024/03/18 09:10:33 by plouda           ###   ########.fr        #
+#    Updated: 2024/03/18 10:02:00 by plouda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME =	ScavTrap
-SRCS =	main.cpp ClapTrap.cpp ScavTrap.cpp
+NAME =	FragTrap
+SRCS =	main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
 		
 
 #SRCS_DIR = ./src
@@ -19,7 +19,7 @@ BUILD_DIR = ./obj
 OBJS = $(addprefix $(BUILD_DIR)/, $(SRCS))
 OBJS := $(OBJS:.cpp=.o)
 #SRCS := $(addprefix $(SRCS_DIR)/, $(SRCS))
-HEADERS = -I ClapTrap.hpp -I ScavTrap.hpp
+HEADERS = -I ClapTrap.hpp -I ScavTrap.hpp -I FragTrap.hpp
 
 COMP = c++ -g -Wall -Wextra -Werror -std=c++98
 
