@@ -6,7 +6,7 @@
 /*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 13:40:15 by plouda            #+#    #+#             */
-/*   Updated: 2024/03/14 11:39:55 by plouda           ###   ########.fr       */
+/*   Updated: 2024/03/18 14:16:43 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ int	main(int argc, const char **argv)
 	std::string			test;
 
 	if (argc != 4)
+	{
+		std::cerr << "Expected: ./replace [input_file][s1][s2]" << std::endl;
 		return (EXIT_FAILURE);
+	}
 	else
 	{
 		ifs.open(argv[1]);
@@ -53,7 +56,7 @@ int	main(int argc, const char **argv)
 			std::cerr << "Cannot create output file" << std::endl;
 			return (EXIT_FAILURE);
 		}
-		while (ifs.good())
+		while (ifs.good() && std::string(argv[2]) != "")
 		{
 			std::getline(ifs, buffer, '\n');
 			processAndReplace(ofs, buffer, argv[2], argv[3]);
