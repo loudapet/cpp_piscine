@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plouda <plouda@student.42.fr>              +#+  +:+       +#+        */
+/*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 10:23:18 by plouda            #+#    #+#             */
-/*   Updated: 2024/03/18 11:24:25 by plouda           ###   ########.fr       */
+/*   Updated: 2024/03/19 12:57:07 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include "ScavTrap.hpp"
 # include "FragTrap.hpp"
 
-class DiamondTrap : public FragTrap, public ScavTrap
+class DiamondTrap :  public ScavTrap, public FragTrap
 {
 	private:
 		std::string	_name;
@@ -29,6 +29,7 @@ class DiamondTrap : public FragTrap, public ScavTrap
 
 		using ScavTrap::attack;
 		void	whoAmI();
+		int		getAd()	const;
 };
 
 

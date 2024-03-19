@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plouda <plouda@student.42.fr>              +#+  +:+       +#+        */
+/*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 09:43:07 by plouda            #+#    #+#             */
-/*   Updated: 2024/03/18 09:28:35 by plouda           ###   ########.fr       */
+/*   Updated: 2024/03/19 11:06:57 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,11 @@ void	fight(ClapTrap& player, ClapTrap& enemy)
 	std::string		winner;
 	unsigned int	round_counter = 1;
 
+	std::cout << std::endl;
+	std::cout << "-----FIGHTER STATUS-----" << std::endl;
 	displayAttributes(player);
 	displayAttributes(enemy);
+	std::cout << "-----FIGHT START-----" << std::endl;
 	while ((player.getHp() > 0 && enemy.getHp() > 0)
 			&& (player.getEp() > 0 || enemy.getEp() > 0))
 	{
@@ -57,6 +60,12 @@ void	fight(ClapTrap& player, ClapTrap& enemy)
 	else
 		winner = "Nobody";
 	std::cout << winner << "!!!" << std::endl;
+	std::cout << "-----FIGHT END-----" << std::endl;
+	std::cout << "-----FIGHTER STATUS-----" << std::endl;
+	displayAttributes(player);
+	displayAttributes(enemy);
+	std::cout << std::endl;
+
 }
 
 void	displayAttributes(ClapTrap& clapTrap)
@@ -88,12 +97,9 @@ int	main()
 	ClapTrap	Jake("Jake");
 		
 	std::srand(std::time(0));
+	displayAttributes(Default);
 	setAttributes(Bill);
 	setAttributes(Jake);
 	fight(Bill, Jake);
-	displayAttributes(Bill);
-	displayAttributes(Jake);
-	
-
 	return (0);
 }

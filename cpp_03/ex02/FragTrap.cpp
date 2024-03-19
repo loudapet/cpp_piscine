@@ -3,22 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plouda <plouda@student.42.fr>              +#+  +:+       +#+        */
+/*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 09:45:49 by plouda            #+#    #+#             */
-/*   Updated: 2024/03/18 10:03:18 by plouda           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ScavTrap.cpp                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: plouda <plouda@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/15 12:47:50 by plouda            #+#    #+#             */
-/*   Updated: 2024/03/18 09:33:36 by plouda           ###   ########.fr       */
+/*   Updated: 2024/03/19 11:54:09 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +31,7 @@ FragTrap::FragTrap(std::string name) : ClapTrap(name)
 	return ;
 }
 
-FragTrap::FragTrap(const FragTrap& refObj)
+FragTrap::FragTrap(const FragTrap& refObj) : ClapTrap(refObj)
 {
 	*this = refObj;
 }

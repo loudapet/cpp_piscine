@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plouda <plouda@student.42.fr>              +#+  +:+       +#+        */
+/*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 09:43:07 by plouda            #+#    #+#             */
-/*   Updated: 2024/03/18 09:35:13 by plouda           ###   ########.fr       */
+/*   Updated: 2024/03/19 11:07:47 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,57 +49,17 @@ void	takeActionScavTrap(ScavTrap& scavTrap, ClapTrap& target, int action)
 	}
 }
 
-/* void	takeAction(ClapTrap& clapTrap, ClapTrap& target, int action)
-{
-	unsigned int	heal;
-	if (action == 1)
-	{
-		clapTrap.attack(target.getName());
-		if (clapTrap.getEp() > 0)
-			target.takeDamage(clapTrap.getAd());
-	}
-	else if (action == 2)
-	{
-		heal = rand() % 4 + 1;
-		clapTrap.beRepaired(heal);
-	}
-}
-
-void	fight(ClapTrap& player, ClapTrap& enemy)
-{
-	unsigned int	action;
-	std::string		winner;
-	unsigned int	round_counter = 1;
-
-	displayAttributes(player);
-	displayAttributes(enemy);
-	while ((player.getHp() > 0 && enemy.getHp() > 0)
-			&& (player.getEp() > 0 || enemy.getEp() > 0))
-	{
-		std::cout << "[ ROUND " << round_counter++ << " ]" << std::endl;
-		action = rand() % 2 + 1;
-		takeAction(player, enemy, action);
-		action = rand() % 2 + 1;
-		takeAction(enemy, player, action);
-	}
-	std::cout << "And the winner is..." << std::endl;
-	if (player.getHp() > 0 && enemy.getHp() <= 0)
-		winner = player.getName();
-	else if (enemy.getHp() > 0 && player.getHp() <= 0)
-		winner = enemy.getName();
-	else
-		winner = "Nobody";
-	std::cout << winner << "!!!" << std::endl;
-} */
-
 void	fightScavTrap(ClapTrap& player, ScavTrap& enemy)
 {
 	unsigned int	action;
 	std::string		winner;
 	unsigned int	round_counter = 1;
 
+	std::cout << std::endl;
+	std::cout << "-----FIGHTER STATUS-----" << std::endl;
 	displayAttributes(player);
 	displayAttributes(enemy);
+	std::cout << "-----FIGHT START-----" << std::endl;
 	while ((player.getHp() > 0 && enemy.getHp() > 0)
 			&& (player.getEp() > 0 || enemy.getEp() > 0))
 	{
@@ -117,6 +77,11 @@ void	fightScavTrap(ClapTrap& player, ScavTrap& enemy)
 	else
 		winner = "Nobody";
 	std::cout << winner << "!!!" << std::endl;
+	std::cout << "-----FIGHT END-----" << std::endl;
+	std::cout << "-----FIGHTER STATUS-----" << std::endl;
+	displayAttributes(player);
+	displayAttributes(enemy);
+	std::cout << std::endl;
 }
 
 void	displayAttributes(ClapTrap& clapTrap)
@@ -143,18 +108,15 @@ void	setRandomAttributes(ClapTrap& clapTrap)
 
 int	main()
 {
-	ClapTrap	Default("Mr. Default");
+	ScavTrap	Default("Mr. Default");
 	ClapTrap	Bill("Bill");
 	ScavTrap	Isabellle("Isabelle");
 		
 	std::srand(std::time(0));
+	displayAttributes(Default);
 	Isabellle.guardGate();
 	setRandomAttributes(Bill);
 	setRandomAttributes(Isabellle);
-	//fight(Bill, Isabellle);
 	fightScavTrap(Bill, Isabellle);
-	displayAttributes(Bill);
-	displayAttributes(Isabellle);
-
 	return (0);
 }

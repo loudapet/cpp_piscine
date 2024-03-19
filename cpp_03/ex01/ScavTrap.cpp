@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plouda <plouda@student.42.fr>              +#+  +:+       +#+        */
+/*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 12:47:50 by plouda            #+#    #+#             */
-/*   Updated: 2024/03/18 09:54:41 by plouda           ###   ########.fr       */
+/*   Updated: 2024/03/19 11:35:04 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 	return ;
 }
 
-ScavTrap::ScavTrap(const ScavTrap& refObj)
+ScavTrap::ScavTrap(const ScavTrap& refObj) : ClapTrap(refObj)
 {
 	*this = refObj;
 }

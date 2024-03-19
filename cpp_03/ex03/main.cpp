@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plouda <plouda@student.42.fr>              +#+  +:+       +#+        */
+/*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 09:43:07 by plouda            #+#    #+#             */
-/*   Updated: 2024/03/18 11:32:35 by plouda           ###   ########.fr       */
+/*   Updated: 2024/03/19 12:14:59 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,32 +36,32 @@ int	main()
 	displayAttributes(Scavvy);
 	displayAttributes(Fraggy);
 	displayAttributes(Dimmy);
-
+	std::cout << std::endl;
 	Clappy.attack("Target");
 	Scavvy.attack("Target");
 	Fraggy.attack("Target");
 	Dimmy.DiamondTrap::attack("Target");
-
-/* 	Clappy.beRepaired(1);
-	Scavvy.beRepaired(1);
-	Fraggy.beRepaired(1);
-	Dimmy.beRepaired(1);
-
-	Clappy.takeDamage(10);
-	Scavvy.takeDamage(100);
-	Fraggy.takeDamage(100);
-	Dimmy.takeDamage(100);
-
+	std::cout << std::endl;
 	Clappy.beRepaired(1);
 	Scavvy.beRepaired(1);
 	Fraggy.beRepaired(1);
 	Dimmy.beRepaired(1);
-
+	std::cout << std::endl;
 	Clappy.takeDamage(10);
 	Scavvy.takeDamage(100);
 	Fraggy.takeDamage(100);
 	Dimmy.takeDamage(100);
-
+	std::cout << std::endl;
+	Clappy.beRepaired(1);
+	Scavvy.beRepaired(1);
+	Fraggy.beRepaired(1);
+	Dimmy.beRepaired(1);
+	std::cout << std::endl;
+	Clappy.takeDamage(10);
+	Scavvy.takeDamage(100);
+	Fraggy.takeDamage(100);
+	Dimmy.takeDamage(100);
+	std::cout << std::endl;
 	Clappy.attack("Target");
 	Scavvy.attack("Target");
 	Fraggy.attack("Target");
@@ -70,18 +70,20 @@ int	main()
 	Scavvy.beRepaired(1);
 	Fraggy.beRepaired(1);
 	Dimmy.beRepaired(1);
-
+	std::cout << std::endl;
 	Scavvy.guardGate();
 	Fraggy.highFivesGuys();
-
+	std::cout << std::endl;
 	Dimmy.guardGate();
 	Dimmy.highFivesGuys();
 	Dimmy.whoAmI();
-	
+	std::cout << std::endl;
 	displayAttributes(Clappy);
 	displayAttributes(Scavvy);
 	displayAttributes(Fraggy);
-	displayAttributes(Dimmy); */
+	displayAttributes(Dimmy);
+
+	std::cout << Dimmy.getAd() << std::endl;
 
 	return (0);
 }

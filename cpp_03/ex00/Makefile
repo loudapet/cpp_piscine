@@ -6,7 +6,7 @@
 #    By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/16 10:28:25 by plouda            #+#    #+#              #
-#    Updated: 2024/03/14 09:39:37 by plouda           ###   ########.fr        #
+#    Updated: 2024/03/19 11:40:55 by plouda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,14 +14,11 @@ NAME =	ClapTrap
 SRCS =	main.cpp ClapTrap.cpp
 		
 
-#SRCS_DIR = ./src
 BUILD_DIR = ./obj
 OBJS = $(addprefix $(BUILD_DIR)/, $(SRCS))
 OBJS := $(OBJS:.cpp=.o)
-#SRCS := $(addprefix $(SRCS_DIR)/, $(SRCS))
-HEADERS = -I ClapTrap.hpp
 
-COMP = c++ -g -Wall -Wextra -Werror -std=c++98
+COMP = g++ -g -Wall -Wextra -Werror -std=c++98
 
 
 GREEN		=	$(shell printf "\033[1;32m")
@@ -38,7 +35,7 @@ $(NAME): $(OBJS)
 	@echo "$(GREEN)Compilation of '${NAME}' successful.$(RESET)"
 
 obj/%.o: %.cpp | objdir
-	@$(COMP) -c $< -o $@ $(HEADERS)
+	@$(COMP) -c $< -o $@
 
 objdir:
 	@mkdir -p obj
