@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: plouda <plouda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 09:43:07 by plouda            #+#    #+#             */
-/*   Updated: 2024/03/19 11:06:57 by plouda           ###   ########.fr       */
+/*   Updated: 2024/03/20 10:20:38 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	takeAction(ClapTrap& clapTrap, ClapTrap& target, int action)
 	if (action == 1)
 	{
 		clapTrap.attack(target.getName());
-		if (clapTrap.getEp() > 0)
+		if (clapTrap.getEp() > 0 && clapTrap.getHp() > 0)
 			target.takeDamage(clapTrap.getAd());
 	}
 	else if (action == 2)
