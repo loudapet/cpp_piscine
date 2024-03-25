@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plouda <plouda@student.42.fr>              +#+  +:+       +#+        */
+/*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 10:51:39 by plouda            #+#    #+#             */
-/*   Updated: 2024/03/22 17:06:18 by plouda           ###   ########.fr       */
+/*   Updated: 2024/03/25 12:27:56 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,11 @@
 #include "Character.hpp"
 #include "Ice.hpp"
 #include "Cure.hpp"
+#include "MateriaSource.hpp"
 
 int	main()
 {
-	/*{
+	/* {
 		const AMateria* ice = new Ice();
 		const AMateria* cure = new Cure();
 		const Ice*	ice2 = new Ice();
@@ -51,12 +52,30 @@ int	main()
 		me->equip(cure);
 		me->use(0, *enemy);
 		me->unequip(0);
-		//td::cout << &me->getMateria(0) << std::endl;
+		me->unequip(1);
+		std::cout << &me->getMateria(0) << std::endl;
 		std::cout << &me->getMateria(1) << std::endl;
-		//Character::emptyFloor();
+		Character::emptyFloor();
 		delete me;
 		delete enemy;
-
 	}
+/* 	{
+		IMateriaSource* src = new MateriaSource();
+		src->learnMateria(new Ice());
+		src->learnMateria(new Cure());
+		ICharacter* me = new Character("Moonshine");
+		AMateria* tmp;
+		tmp = src->createMateria("ice");
+		me->equip(tmp);
+		tmp = src->createMateria("cure");
+		me->equip(tmp);
+		ICharacter* bob = new Character("Bob");
+		me->use(0, *bob);
+		me->use(1, *bob);
+		delete me;
+		delete bob;
+		delete src;
+		return 0;
+	} */
 	return 0;
 }

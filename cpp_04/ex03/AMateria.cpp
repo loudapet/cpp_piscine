@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AMateria.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plouda <plouda@student.42.fr>              +#+  +:+       +#+        */
+/*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 09:20:00 by plouda            #+#    #+#             */
-/*   Updated: 2024/03/22 15:19:30 by plouda           ###   ########.fr       */
+/*   Updated: 2024/03/25 10:08:38 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ std::string const&	AMateria::getType() const
 
 void	AMateria::use(ICharacter& target)
 {
-	(void)target;
+	std::cout << "uses Materia at " << target.getName() << std::endl;
 	return ;
 }
 
