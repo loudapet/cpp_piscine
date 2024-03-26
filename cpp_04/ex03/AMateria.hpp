@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AMateria.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plouda <plouda@student.42.fr>              +#+  +:+       +#+        */
+/*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 09:18:55 by plouda            #+#    #+#             */
-/*   Updated: 2024/03/22 16:31:10 by plouda           ###   ########.fr       */
+/*   Updated: 2024/03/26 09:43:44 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ class AMateria
 {
 	protected:
 		std::string	_type;
+		bool		_inInventory;
 	public:
 		AMateria();
 		AMateria(std::string const & type);
@@ -29,6 +30,8 @@ class AMateria
 		std::string const&	getType() const; //Returns the materia type
 		virtual AMateria*	clone() const = 0;
 		virtual void 		use(ICharacter& target);
+		void				setInInventory(bool value);
+		bool				getInInventory() const;
 };
 
 #endif  // AMATERIA_HPP

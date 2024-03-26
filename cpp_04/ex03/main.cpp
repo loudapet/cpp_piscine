@@ -6,7 +6,7 @@
 /*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 10:51:39 by plouda            #+#    #+#             */
-/*   Updated: 2024/03/25 12:27:56 by plouda           ###   ########.fr       */
+/*   Updated: 2024/03/26 11:55:57 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@
 #include "Ice.hpp"
 #include "Cure.hpp"
 #include "MateriaSource.hpp"
+#include <unistd.h>
 
 int	main()
 {
-	/* {
+/* 	{
 		const AMateria* ice = new Ice();
 		const AMateria* cure = new Cure();
 		const Ice*	ice2 = new Ice();
@@ -43,22 +44,31 @@ int	main()
 		delete cure;
 		delete newIce;
 	} */
-	{
+/* 	{
 		ICharacter *me = new Character("Me");
 		ICharacter *enemy = new Character("Enemy");
 		AMateria* ice = new Ice();
 		AMateria* cure = new Cure();
+
 		me->equip(ice);
 		me->equip(cure);
+		me->equip(cure);
+		me->equip(ice);
+		me->equip(cure);
+
 		me->use(0, *enemy);
 		me->unequip(0);
 		me->unequip(1);
-		std::cout << &me->getMateria(0) << std::endl;
-		std::cout << &me->getMateria(1) << std::endl;
+		//std::cout << me->getMateria(0) << std::endl;
+		//std::cout << me->getMateria(1) << std::endl;
+		enemy->equip(ice);
+		me->equip(cure);
+		enemy->use(0, *me);
+		me->unequip(0);
 		Character::emptyFloor();
 		delete me;
 		delete enemy;
-	}
+	} */
 /* 	{
 		IMateriaSource* src = new MateriaSource();
 		src->learnMateria(new Ice());
@@ -75,7 +85,58 @@ int	main()
 		delete me;
 		delete bob;
 		delete src;
-		return 0;
 	} */
+/* 	{
+		ICharacter *me = new Character("Me");
+		ICharacter *enemy = new Character("Enemy");
+		IMateriaSource* src = new MateriaSource();
+		src->learnMateria(new Ice());
+		src->learnMateria(new Cure());
+		AMateria* ice = src->createMateria("ice");
+		AMateria* cure = src->createMateria("cure");
+		src->learnMateria(new Cure());
+		src->learnMateria(new Ice());
+		src->learnMateria(cure);
+		src->learnMateria(ice);
+		AMateria* tmp;
+
+		me->equip(ice);
+		enemy->equip(ice);
+		enemy->equip(cure);
+		tmp = src->createMateria("ice");
+		me->equip(tmp);
+		tmp = src->createMateria("ice");
+		me->equip(tmp);
+		tmp = src->createMateria("cure");
+		me->equip(tmp);
+		tmp = src->createMateria("cure");
+		me->equip(tmp);
+		delete tmp;
+
+		me->use(0, *enemy);
+		me->unequip(0);
+		me->unequip(1);
+		
+		enemy->equip(ice);
+		me->equip(cure);
+		enemy->use(0, *me);
+		me->unequip(0);
+		
+		Character::emptyFloor();
+		delete me;
+		delete enemy;
+		delete src;
+	} */
+	{
+		for (int i = 0 ; i < 102 ; i++)
+		{
+			ICharacter *me = new Character("Chump");
+			AMateria* cure = new Cure();
+			me->equip(cure);
+			me->unequip(0);
+			delete me;
+		}
+		Character::emptyFloor();
+	}
 	return 0;
 }

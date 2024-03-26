@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cure.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plouda <plouda@student.42.fr>              +#+  +:+       +#+        */
+/*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 10:20:11 by plouda            #+#    #+#             */
-/*   Updated: 2024/03/22 16:30:09 by plouda           ###   ########.fr       */
+/*   Updated: 2024/03/26 09:31:53 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@
 
 class Cure : public AMateria
 {
-	private:
-		// private attributes here
-
 	public:
 		Cure();
 		Cure(const Cure& refObj);

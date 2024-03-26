@@ -6,23 +6,21 @@
 /*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 09:20:00 by plouda            #+#    #+#             */
-/*   Updated: 2024/03/25 10:08:38 by plouda           ###   ########.fr       */
+/*   Updated: 2024/03/26 11:13:14 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AMateria.hpp"
 
-AMateria::AMateria()
+AMateria::AMateria() : _type(""), _inInventory(false)
 {
-	_type = "";
-	std::cout << "Default ◎ created" << std::endl;
+	//std::cout << "Default ◎ created" << std::endl;
 	return ;
 }
 
-AMateria::AMateria(std::string const & type)
+AMateria::AMateria(std::string const & type) : _type(type), _inInventory(false)
 {
-	_type = type;
-	std::cout << "Default ◎ created" << std::endl;
+	//std::cout << "Default ◎ created" << std::endl;
 	return ;
 }
 
@@ -41,7 +39,7 @@ AMateria& AMateria::operator = (const AMateria& refObj)
 
 AMateria::~AMateria()
 {
-	std::cout << "Default ◎ scrapped" << std::endl;
+	//std::cout << "Default ◎ scrapped" << std::endl;
 	return ;
 }
 
@@ -54,5 +52,15 @@ void	AMateria::use(ICharacter& target)
 {
 	std::cout << "uses Materia at " << target.getName() << std::endl;
 	return ;
+}
+
+void	AMateria::setInInventory(bool value)
+{
+	_inInventory = value;
+}
+
+bool	AMateria::getInInventory() const
+{
+	return (_inInventory);
 }
 
