@@ -6,7 +6,7 @@
 /*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 10:51:39 by plouda            #+#    #+#             */
-/*   Updated: 2024/03/26 11:55:57 by plouda           ###   ########.fr       */
+/*   Updated: 2024/03/26 13:55:58 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 int	main()
 {
-/* 	{
+	{
 		const AMateria* ice = new Ice();
 		const AMateria* cure = new Cure();
 		const Ice*	ice2 = new Ice();
@@ -43,8 +43,9 @@ int	main()
 		delete ice2;
 		delete cure;
 		delete newIce;
-	} */
-/* 	{
+		std::cout << "----------------------------------------------------------" << std::endl;
+	}
+	{
 		ICharacter *me = new Character("Me");
 		ICharacter *enemy = new Character("Enemy");
 		AMateria* ice = new Ice();
@@ -68,8 +69,9 @@ int	main()
 		Character::emptyFloor();
 		delete me;
 		delete enemy;
-	} */
-/* 	{
+		std::cout << "----------------------------------------------------------" << std::endl;
+	}
+	{
 		IMateriaSource* src = new MateriaSource();
 		src->learnMateria(new Ice());
 		src->learnMateria(new Cure());
@@ -85,8 +87,9 @@ int	main()
 		delete me;
 		delete bob;
 		delete src;
-	} */
-/* 	{
+		std::cout << "----------------------------------------------------------" << std::endl;
+	}
+	{
 		ICharacter *me = new Character("Me");
 		ICharacter *enemy = new Character("Enemy");
 		IMateriaSource* src = new MateriaSource();
@@ -126,7 +129,8 @@ int	main()
 		delete me;
 		delete enemy;
 		delete src;
-	} */
+		std::cout << "----------------------------------------------------------" << std::endl;
+	}
 	{
 		for (int i = 0 ; i < 102 ; i++)
 		{
