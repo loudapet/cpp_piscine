@@ -6,7 +6,7 @@
 /*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 10:35:29 by plouda            #+#    #+#             */
-/*   Updated: 2024/03/28 11:10:06 by plouda           ###   ########.fr       */
+/*   Updated: 2024/03/28 11:01:26 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,9 @@
 const std::string	basicTest("Basic test");
 const std::string	gradesLowTest("Constructor exception 1");
 const std::string	gradesHighTest("Constructor exception 2");
-const std::string	incDecTest("Increment & decrement");
-const std::string	incDecTestFunc("Increment & decrement (function)");
-const std::string	incDecException("Increment & decrement exception");
-const std::string	incDecFuncException("Increment & decrement (function) exception");
-
+const std::string	signFormRight("Signing form 1");
+const std::string	signFormWrong("Signing form 2");
+const std::string	signFormSigned("Signing form 3");
 
 const std::string	diffExceptionCatch("out_of_range exception");
 
@@ -49,8 +47,10 @@ int	main(int argc, const char **argv)
 	{
 		Bureaucrat	high("Justin", 3);
 		Bureaucrat	low("Moonie", 148);
+		Form		form("29B", 10, 10);
 		std::cout << high << std::endl;
 		std::cout << low << std::endl;
+		std::cout << form << std::endl;
 	}
 	catch(const std::exception& e)
 	{
@@ -62,10 +62,10 @@ int	main(int argc, const char **argv)
 	{
 		Bureaucrat	high("High", 3);
 		Bureaucrat	low("Low", 148);
-		Bureaucrat	imposter("Imposter", 151);
+		Form	imposterForm("Imposter", 151, 151);
 		std::cout << high << std::endl;
 		std::cout << low << std::endl;
-		std::cout << imposter << std::endl;
+		std::cout << imposterForm << std::endl;
 	}
 	catch(const std::exception& e)
 	{
@@ -77,98 +77,59 @@ int	main(int argc, const char **argv)
 	{
 		Bureaucrat	high("High", 3);
 		Bureaucrat	low("Low", 148);
-		Bureaucrat	imposter("Imposter", -1);
+		Form	imposterForm("Imposter", 30, 0);
 		std::cout << high << std::endl;
 		std::cout << low << std::endl;
-		std::cout << imposter << std::endl;
+		std::cout << imposterForm << std::endl;
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
 
-	startTest(incDecTest);
+	startTest(signFormRight);
 	try
 	{
-		Bureaucrat	high("High", 3);
-		Bureaucrat	low("Low", 148);
+		Bureaucrat	high("High", 30);
+		Form		form("Crewmate", 30, 1);
 		std::cout << high << std::endl;
-		std::cout << low << std::endl;
-		std::cout << ++high << std::endl;
-		std::cout << --low << std::endl;
-		std::cout << high++ << std::endl;
-		std::cout << low-- << std::endl;
-		std::cout << high << std::endl;
-		std::cout << low << std::endl;
-		
+		std::cout << form << std::endl;
+		high.signForm(form);
+		std::cout << form << std::endl;
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
 
-	startTest(incDecException);
+	startTest(signFormWrong);
 	try
 	{
-		Bureaucrat	high("High", 3);
-		Bureaucrat	low("Low", 148);
+		Bureaucrat	high("High", 30);
+		Form		form("Crewmate", 29, 1);
 		std::cout << high << std::endl;
-		std::cout << low << std::endl;
-		std::cout << ++high << std::endl;
-		std::cout << --low << std::endl;
-		std::cout << high++ << std::endl;
-		std::cout << low-- << std::endl;
-		std::cout << high << std::endl;
-		std::cout << low << std::endl;
-		// breaking point
-		std::cout << high++ << std::endl;
-		std::cout << low-- << std::endl;
-		
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
-	
-	startTest(incDecTestFunc);
-	try
-	{
-		Bureaucrat	high("High", 3);
-		Bureaucrat	low("Low", 148);
-		std::cout << high << std::endl;
-		std::cout << low << std::endl;
-		high.gradeUp();
-		low.gradeDown();
-		std::cout << high << std::endl;
-		std::cout << low << std::endl;
-		high.gradeDown(10);
-		low.gradeUp(10);
-		std::cout << high << std::endl;
-		std::cout << low << std::endl;
-		
+		std::cout << form << std::endl;
+		high.signForm(form);
+		std::cout << form << std::endl;
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
 
-	startTest(incDecFuncException);
+	startTest(signFormSigned);
 	try
 	{
-		Bureaucrat	high("High", 3);
-		Bureaucrat	low("Low", 148);
+		Bureaucrat	high("High", 30);
+		Bureaucrat	low("Low", 99);
+		Form		form("Crewmate", 100, 1);
 		std::cout << high << std::endl;
 		std::cout << low << std::endl;
-		high.gradeUp();
-		low.gradeDown();
-		std::cout << high << std::endl;
-		std::cout << low << std::endl;
-		// breaking point
-		high.gradeDown(1000);
-		low.gradeUp(1000);
-		std::cout << high << std::endl;
-		std::cout << low << std::endl;
-		
+		std::cout << form << std::endl;
+		high.signForm(form);
+		std::cout << form << std::endl;
+		low.signForm(form);
+		std::cout << form << std::endl;
 	}
 	catch(const std::exception& e)
 	{
@@ -180,10 +141,10 @@ int	main(int argc, const char **argv)
 	{
 		Bureaucrat	high("High", 3);
 		Bureaucrat	low("Low", 147);
-		Bureaucrat	imposter("Imposter", -1);
+		Form		imposterForm("Imposter form", -1, 0);
 		std::cout << high << std::endl;
 		std::cout << low << std::endl;
-		std::cout << imposter << std::endl;
+		std::cout << imposterForm << std::endl;
 	}
 	catch(const std::out_of_range& e) // notice the change here, ::logic_error is also acceptable
 	{
