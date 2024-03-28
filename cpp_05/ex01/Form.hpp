@@ -6,7 +6,7 @@
 /*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 08:51:18 by plouda            #+#    #+#             */
-/*   Updated: 2024/03/28 10:26:27 by plouda           ###   ########.fr       */
+/*   Updated: 2024/03/28 12:32:49 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ class Form
 		void			beSigned(Bureaucrat& bureaucrat);
 
 
-		class GradeTooLowException : public std::out_of_range
+		class GradeTooLowException : public std::invalid_argument
 		{
 			public:
 				GradeTooLowException();
 				const char*		what() const throw();
 		};
-		class GradeTooHighException : public std::out_of_range
+		class GradeTooHighException : public std::invalid_argument
 		{
 			public:
 				GradeTooHighException();

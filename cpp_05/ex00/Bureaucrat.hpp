@@ -6,7 +6,7 @@
 /*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 10:38:44 by plouda            #+#    #+#             */
-/*   Updated: 2024/03/27 15:13:30 by plouda           ###   ########.fr       */
+/*   Updated: 2024/03/28 12:31:29 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ class Bureaucrat
 		Bureaucrat&			operator--();
 		Bureaucrat			operator--(int);
 
-		class GradeTooLowException : public std::out_of_range
+		class GradeTooLowException : public std::invalid_argument
 		{
 			public:
 				GradeTooLowException();
 				const char*		what() const throw();
 		};
-		class GradeTooHighException : public std::out_of_range
+		class GradeTooHighException : public std::invalid_argument
 		{
 			public:
 				GradeTooHighException();

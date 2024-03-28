@@ -6,7 +6,7 @@
 /*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 10:37:52 by plouda            #+#    #+#             */
-/*   Updated: 2024/03/28 11:07:39 by plouda           ###   ########.fr       */
+/*   Updated: 2024/03/28 12:32:33 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ void Bureaucrat::signForm(Form &form)
 		form.beSigned(*this);
 		std::cout << _name << " signed " << form.getName() << std::endl;
 	}
-	catch (const std::out_of_range& e)
+	catch (const std::invalid_argument& e)
 	{
 		std::cout << _name << " couldn't sign " << form.getName();
 		std::cout << " because " << e.what() << std::endl;
@@ -135,7 +135,7 @@ void Bureaucrat::signForm(Form &form)
 }
 
 Bureaucrat::GradeTooLowException::GradeTooLowException() :
-	std::out_of_range("Grade is too low")
+	std::invalid_argument("Grade is too low")
 {
 	return ;
 }
@@ -146,7 +146,7 @@ const char* Bureaucrat::GradeTooLowException::what() const throw()
 }
 
 Bureaucrat::GradeTooHighException::GradeTooHighException() :
-	std::out_of_range("Grade is too high")
+	std::invalid_argument("Grade is too high")
 {
 	return ;
 }

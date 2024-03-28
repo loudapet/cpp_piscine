@@ -6,7 +6,7 @@
 /*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 10:35:29 by plouda            #+#    #+#             */
-/*   Updated: 2024/03/28 11:10:06 by plouda           ###   ########.fr       */
+/*   Updated: 2024/03/28 12:31:27 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ const std::string	incDecException("Increment & decrement exception");
 const std::string	incDecFuncException("Increment & decrement (function) exception");
 
 
-const std::string	diffExceptionCatch("out_of_range exception");
+const std::string	diffExceptionCatch("invalid_argument exception");
 
 void	startTest(const std::string& title)
 {
@@ -185,7 +185,7 @@ int	main(int argc, const char **argv)
 		std::cout << low << std::endl;
 		std::cout << imposter << std::endl;
 	}
-	catch(const std::out_of_range& e) // notice the change here, ::logic_error is also acceptable
+	catch(const std::invalid_argument& e) // notice the change here, ::logic_error is also acceptable
 	{
 		std::cerr << e.what() << std::endl;
 	}

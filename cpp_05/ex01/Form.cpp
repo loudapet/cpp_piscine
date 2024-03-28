@@ -6,7 +6,7 @@
 /*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 08:51:21 by plouda            #+#    #+#             */
-/*   Updated: 2024/03/28 10:44:04 by plouda           ###   ########.fr       */
+/*   Updated: 2024/03/28 12:32:41 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void Form::beSigned(Bureaucrat &bureaucrat)
 }
 
 Form::GradeTooLowException::GradeTooLowException() :
-	std::out_of_range("")
+	std::invalid_argument("")
 {
 	return ;
 }
@@ -87,7 +87,7 @@ const char* Form::GradeTooLowException::what() const throw()
 }
 
 Form::GradeTooHighException::GradeTooHighException() :
-	std::out_of_range("")
+	std::invalid_argument("")
 {
 	return ;
 }
