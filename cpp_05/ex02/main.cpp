@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: plouda <plouda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 10:35:29 by plouda            #+#    #+#             */
-/*   Updated: 2024/04/01 10:04:05 by plouda           ###   ########.fr       */
+/*   Updated: 2024/04/01 10:17:40 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 - RobotomyRequestForm: Required grades: sign 72, exec 45
 - PresidentialPardonForm: Required grades: sign 25, exec 5
 */
-/* std::string	testArray[] =	{"Basic test", 
+std::string	testArray[] =	{"Basic test", 
 							"executing Shrubbery form",
 							"executing Shrubbery form - low grade",
 							"executing Shrubbery form - not signed",
@@ -28,8 +28,7 @@
 							"executing Robotomy form - not signed",
 							"executing Pardon form",
 							"executing Pardon form - low grade",
-							"executing Pardon form - not signed"}; */
-std::string	testArray[] =	{"executing Shrubbery form - not signed"};
+							"executing Pardon form - not signed"};
 
 void	startTest(const std::string& title)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: plouda <plouda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 11:43:06 by plouda            #+#    #+#             */
-/*   Updated: 2024/03/28 15:23:21 by plouda           ###   ########.fr       */
+/*   Updated: 2024/04/01 10:16:27 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void		ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
 	AForm::checkIfExecutable(executor);
 	std::ofstream		ofs;
-	ofs.open(_target + "_shrubbery");
+	ofs.open(std::string(_target + "_shrubbery").c_str());
 	if (!ofs.is_open())
 		throw (outfileNotOpenException());
 	ofs << "            ,@@@@@@@,                 " << std::endl;
