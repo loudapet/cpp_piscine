@@ -6,11 +6,11 @@
 #    By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/16 10:28:25 by plouda            #+#    #+#              #
-#    Updated: 2024/04/01 12:17:33 by plouda           ###   ########.fr        #
+#    Updated: 2024/04/03 10:42:16 by plouda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME =	Forms
+NAME =	Interns
 SRCS =	AForm.cpp Bureaucrat.cpp PresidentialPardonForm.cpp \
 		ShrubberyCreationForm.cpp RobotomyRequestForm.cpp \
 		TestWrapper.cpp main.cpp Intern.cpp
