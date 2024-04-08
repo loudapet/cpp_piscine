@@ -6,7 +6,7 @@
 /*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 13:00:19 by plouda            #+#    #+#             */
-/*   Updated: 2024/04/08 15:09:56 by plouda           ###   ########.fr       */
+/*   Updated: 2024/04/08 15:45:30 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,24 +125,43 @@ void	castFromChar(const std::string &string, Values *values)
 	values->d = static_cast<double>(values->c);
 }
 
-void	printChar(Values* values, long validation)
+void	printChar(const std::string& string, Values* values, Type type)
 {
-	if (validation > std::numeric_limits<unsigned char>::min() 
-		&& validation < std::numeric_limits<unsigned char>::max())
+	if (type == CHAR)
 	{
-		if (isprint(values->c))
-			std::cout << "char: " << values->c << std::endl;
+		if (string.size() > 0 && string[0] >= +std::numeric_limits<unsigned char>::min() 
+			&& string[0] <= +std::numeric_limits<unsigned char>::max())
+		{
+			if (isprint(values->c))
+				std::cout << "char: " << values->c << std::endl;
+			else
+				std::cout << "char: Non displayable" << std::endl;
+		}
 		else
-			std::cout << "char: Non displayable" << std::endl;
+			std::cout << "char: impossible" << std::endl;
 	}
 	else
-		std::cout << "char: impossible" << std::endl;
+	{
+		long	validation = std::strtol(string.c_str(), NULL, 10);
+		if (validation >= +std::numeric_limits<unsigned char>::min() 
+			&& validation <= +std::numeric_limits<unsigned char>::max())
+		{
+			if (isprint(values->c))
+				std::cout << "char: " << values->c << std::endl;
+			else
+				std::cout << "char: Non displayable" << std::endl;
+		}
+		else
+			std::cout << "char: impossible" << std::endl;
+	}
 }
 
-void	printInt(Values* values, long validation)
+void	printInt(const std::string& string, Values* values)
 {
-	if (validation > std::numeric_limits<int>::min() 
-		&& validation < std::numeric_limits<int>::max())
+	long	validation = std::strtol(string.c_str(), NULL, 10);
+	
+	if (validation >= std::numeric_limits<int>::min() 
+		&& validation <= std::numeric_limits<int>::max())
 	{		
 		std::cout << "int: " << values->i << std::endl;
 	}
@@ -170,12 +189,11 @@ void	printDouble(const std::string &string, Values* values)
 		std::cout << "double: " << std::fixed << std::setprecision(precision) << values->d << std::endl;
 }
 
-void	printValues(const std::string &string, Values* values)
+void	printValues(const std::string &string, Values* values, Type type)
 {
-	long	validation = std::strtol(string.c_str(), NULL, 10);
 
-	printChar(values, validation);
-	printInt(values, validation);
+	printChar(string, values, type);
+	printInt(string, values);
 	printFloat(string, values);
 	printDouble(string, values);
 }
@@ -218,6 +236,7 @@ void	ScalarConverter::convert(const std::string value)
 	Values	values;
 	Convert	convertArr[4] = {&castFromChar, &castFromInt, &castFromFloat, &castFromDouble};
 
+	std::cout << type << std::endl;
 	if (type == INVALID)
 		std::cerr << "Invalid input" << std::endl;
 	else if (type == PSEUDO)
@@ -227,7 +246,7 @@ void	ScalarConverter::convert(const std::string value)
 		if (type == FLOAT || type == DOUBLE)
 			precision = getPrecision(value, type);
 		convertArr[type](value, &values);
-		printValues(value, &values);
+		printValues(value, &values, type);
 	}
 }
 
