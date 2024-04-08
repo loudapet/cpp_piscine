@@ -6,7 +6,7 @@
 /*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:07:04 by plouda            #+#    #+#             */
-/*   Updated: 2024/04/01 10:05:35 by plouda           ###   ########.fr       */
+/*   Updated: 2024/04/08 08:50:12 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ TestWrapper::TestWrapper(int testNb) : _shrubbery(NULL), _robotomy(NULL), _pardo
 	std::stringstream sstream;
 	sstream << "home_" << testNb;
 	_shrubbery = new ShrubberyCreationForm(sstream.str());
-	sstream.clear();
-	sstream << "almostRobot_" << testNb;
+	sstream.str("");
+	sstream << "almostRobot " << testNb;
 	_robotomy = new RobotomyRequestForm(sstream.str());
-	sstream.clear();
+	sstream.str("");
 	sstream << "Harry Potter " << testNb;
 	_pardon = new PresidentialPardonForm(sstream.str());
-	sstream.clear();
+	sstream.str("");
 }
 
 TestWrapper::TestWrapper(Bureaucrat high, Bureaucrat low, int testNb) : _shrubbery(NULL),
@@ -42,13 +42,13 @@ TestWrapper::TestWrapper(Bureaucrat high, Bureaucrat low, int testNb) : _shrubbe
 	std::stringstream sstream;
 	sstream << "home_" << testNb;
 	_shrubbery = new ShrubberyCreationForm(sstream.str());
-	sstream.clear();
+	sstream.str("");
 	sstream << "almostRobot_" << testNb;
 	_robotomy = new RobotomyRequestForm(sstream.str());
-	sstream.clear();
+	sstream.str("");
 	sstream << "Harry Potter " << testNb;
 	_pardon = new PresidentialPardonForm(sstream.str());
-	sstream.clear();
+	sstream.str("");
 }
 
 // deep copy

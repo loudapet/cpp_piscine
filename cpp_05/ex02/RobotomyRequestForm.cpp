@@ -6,7 +6,7 @@
 /*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 11:43:06 by plouda            #+#    #+#             */
-/*   Updated: 2024/03/29 10:34:57 by plouda           ###   ########.fr       */
+/*   Updated: 2024/04/08 08:45:47 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ RobotomyRequestForm::~RobotomyRequestForm()
 void		RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
 	AForm::checkIfExecutable(executor);
+	srand(time(0));
 	if (rand() % 2)
 		std::cout << _target << " has been robotomized." << std::endl;
 	else
