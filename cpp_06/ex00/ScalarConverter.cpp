@@ -6,7 +6,7 @@
 /*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 13:00:19 by plouda            #+#    #+#             */
-/*   Updated: 2024/04/08 15:45:30 by plouda           ###   ########.fr       */
+/*   Updated: 2024/04/09 10:45:00 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ static bool	isFloat(const std::string &value)
 	return
 	(
 		value.find_first_not_of(FLOAT_CHARS) == std::string::npos
-		&& value.find_first_of('.') == value.find_last_of('.') 
-		&& value.find_first_of('f') == value.find_last_of('f') 
+		&& value.find_first_of('.') == value.find_last_of('.') && value.find_first_of('.') != std::string::npos
+		&& value.find_first_of('f') == value.find_last_of('f') && value.find_first_of('f') != std::string::npos
 		&& (isdigit(value[value.find_first_of('.') + 1]) || value[value.find_first_of('.') + 1] == 'f')
 		&& value[value.find_first_of('f') + 1] == 0
 	);
@@ -69,8 +69,19 @@ static bool	isInteger(const std::string &value)
 
 static bool	isInvalidSign(const std::string &value)
 {
-	return (value.find_first_of("+-") != value.find_last_of("+-"));
+	bool	singleton = false;
+	bool	hasSign = value.find_first_of("+-") != std::string::npos;
+
+	singleton = (value.find_first_of("+-") == value.find_last_of("+-"));
+	if (!singleton)
+		return (true);
+	else if (singleton && hasSign)
+		return (value.find_last_of("+-") != 0);
+	else
+		return (false);
 }
+
+
 
 Type	findType(const std::string &value)
 {
@@ -80,7 +91,7 @@ Type	findType(const std::string &value)
 		return (PSEUDO);
 	else if (isInvalidSign(value))
 		return (INVALID);
-	else if (value == "+" || value == "-" || value == "." || value == "f")
+	else if (isChar(value))
 		return (CHAR);
 	else if (isInteger(value))
 		return (INT);
@@ -88,8 +99,6 @@ Type	findType(const std::string &value)
 		return (DOUBLE);
 	else if (isFloat(value))
 		return (FLOAT);
-	else if (isChar(value))
-		return (CHAR);
 	return (INVALID);
 }
 
@@ -176,7 +185,9 @@ void	printFloat(const std::string &string, Values* values)
 	if (errno)
 		std::cout << "float: impossible" << std::endl;
 	else
+	{
 		std::cout << "float: " << std::fixed << std::setprecision(precision) << values->f << "f" << std::endl;
+	}
 }
 
 void	printDouble(const std::string &string, Values* values)
@@ -223,20 +234,54 @@ void	printPseudo(const std::string &string, Values* values)
 
 int	getPrecision(const std::string& string, Type type)
 {
-	(void)type;
-	int prec = string.size() - string.find_first_of('.') - 1;
+	int		prec;
+	bool	hasDot = string.find_first_of(".") != std::string::npos;
+	if (type == DOUBLE && hasDot)
+		prec = string.size() - string.find_first_of('.') - 1;
+	else if (hasDot)
+		prec = string.size() - string.find_first_of('.') - 2;
+	else
+		prec = 1;
 	if (prec <= 0)
 		prec = 1;
 	return (prec);
 }
 
+Type	validityCheck(const std::string& string, Type type)
+{
+	if (type == INT)
+	{
+		long	validation = std::strtol(string.c_str(), NULL, 10);
+		
+		if (validation < std::numeric_limits<int>::min() 
+			|| validation > std::numeric_limits<int>::max())
+		{		
+			return (INVALID);
+		}
+	}
+	else if (type == FLOAT)
+	{
+		errno = 0;
+		std::strtof(string.c_str(), NULL);
+		if (errno)
+			return (INVALID);
+	}
+	else if (type == DOUBLE)
+	{
+		errno = 0;
+		std::strtod(string.c_str(), NULL);
+		if (errno)
+			return (INVALID);
+	}
+	return (type);
+}
+
 void	ScalarConverter::convert(const std::string value)
 {
-	Type	type = findType(value);
+	Type	type = validityCheck(value, findType(value));
 	Values	values;
 	Convert	convertArr[4] = {&castFromChar, &castFromInt, &castFromFloat, &castFromDouble};
 
-	std::cout << type << std::endl;
 	if (type == INVALID)
 		std::cerr << "Invalid input" << std::endl;
 	else if (type == PSEUDO)
