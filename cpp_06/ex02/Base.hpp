@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Base.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/01 13:01:05 by plouda            #+#    #+#             */
-/*   Updated: 2024/04/10 11:33:55 by plouda           ###   ########.fr       */
+/*   Created: 2024/04/09 12:29:22 by plouda            #+#    #+#             */
+/*   Updated: 2024/04/10 12:08:12 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScalarConverter.hpp"
+#ifndef BASE_HPP
+#define BASE_HPP
+#include <iostream>
 
-int	main(int argc, const char **argv)
+class Base
 {
-	if (argc == 2)
-	{
-		ScalarConverter::convert(std::string(argv[1]));
-	}
-	//std::cout << std::fixed << std::setprecision(6) << std::numeric_limits<float>::max() << std::endl;
-	return (0);
-}
+	public:
+		virtual ~Base();
+};
+
+class A : public Base {};
+class B : public Base {};
+class C : public Base {};
+
+Base* generate(void);
+void identify(Base *ptr);
+void identify(Base &ref);
+
+#endif  // BASE_HPP

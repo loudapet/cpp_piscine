@@ -6,7 +6,7 @@
 /*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 13:00:19 by plouda            #+#    #+#             */
-/*   Updated: 2024/04/09 10:45:00 by plouda           ###   ########.fr       */
+/*   Updated: 2024/04/09 16:42:53 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,6 @@ static bool	isInvalidSign(const std::string &value)
 	else
 		return (false);
 }
-
-
 
 Type	findType(const std::string &value)
 {
@@ -261,8 +259,7 @@ Type	validityCheck(const std::string& string, Type type)
 	}
 	else if (type == FLOAT)
 	{
-		errno = 0;
-		std::strtof(string.c_str(), NULL);
+		errno = 0;		std::strtof(string.c_str(), NULL);
 		if (errno)
 			return (INVALID);
 	}
