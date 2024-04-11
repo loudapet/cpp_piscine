@@ -6,7 +6,7 @@
 /*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 13:00:19 by plouda            #+#    #+#             */
-/*   Updated: 2024/04/09 16:42:53 by plouda           ###   ########.fr       */
+/*   Updated: 2024/04/10 15:19:17 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,14 +163,19 @@ void	printChar(const std::string& string, Values* values, Type type)
 	}
 }
 
-void	printInt(const std::string& string, Values* values)
+void	printInt(const std::string& string, Values* values, Type type)
 {
 	long	validation = std::strtol(string.c_str(), NULL, 10);
 	
 	if (validation >= std::numeric_limits<int>::min() 
 		&& validation <= std::numeric_limits<int>::max())
-	{		
-		std::cout << "int: " << values->i << std::endl;
+	{
+		if (type != FLOAT || 
+			(type == FLOAT && static_cast<long long>(values->f) >= std::numeric_limits<int>::min()
+			&& static_cast<long long>(values->f) <= std::numeric_limits<int>::max()))
+			std::cout << "int: " << values->i << std::endl;
+		else
+			std::cout << "int: impossible" << std::endl;
 	}
 	else
 		std::cout << "int: impossible" << std::endl;
@@ -202,7 +207,7 @@ void	printValues(const std::string &string, Values* values, Type type)
 {
 
 	printChar(string, values, type);
-	printInt(string, values);
+	printInt(string, values, type);
 	printFloat(string, values);
 	printDouble(string, values);
 }
