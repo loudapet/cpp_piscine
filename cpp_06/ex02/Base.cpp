@@ -53,20 +53,20 @@ void identify(Base &ref)
 		(void)dynamic_cast<A&>(ref);
 		std::cout << "Identified reference: A" << std::endl;
 	}
-	catch(const std::bad_cast& e){}
+	catch(const std::exception& e){}
 
 	try
 	{
 		(void)dynamic_cast<B&>(ref);
 		std::cout << "Identified reference: B" << std::endl;
 	}
-	catch(const std::bad_cast& e){}
+	catch(const std::exception& e){}
 
 	try
 	{
 		(void)dynamic_cast<C&>(ref);
 		std::cout << "Identified reference: C" << std::endl;
 	}
-	catch(const std::bad_cast& e){}
+	catch(const std::exception& e){}
 	
 }

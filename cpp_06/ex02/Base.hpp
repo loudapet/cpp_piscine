@@ -6,13 +6,14 @@
 /*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 12:29:22 by plouda            #+#    #+#             */
-/*   Updated: 2024/04/10 12:08:12 by plouda           ###   ########.fr       */
+/*   Updated: 2024/04/11 12:22:32 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BASE_HPP
 #define BASE_HPP
 #include <iostream>
+#include <cstdlib>
 
 class Base
 {
