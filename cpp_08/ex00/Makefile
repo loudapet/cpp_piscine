@@ -6,12 +6,12 @@
 #    By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/16 10:28:25 by plouda            #+#    #+#              #
-#    Updated: 2024/04/11 12:20:23 by plouda           ###   ########.fr        #
+#    Updated: 2024/04/12 12:35:05 by plouda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME =	ScalarConverter
-SRCS =	ScalarConverter.cpp main.cpp
+NAME =	easyfind
+SRCS =	main.cpp
 
 BUILD_DIR = ./obj
 OBJS = $(addprefix $(BUILD_DIR)/, $(SRCS))

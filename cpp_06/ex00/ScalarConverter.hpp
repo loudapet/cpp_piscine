@@ -6,7 +6,7 @@
 /*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 13:00:17 by plouda            #+#    #+#             */
-/*   Updated: 2024/04/09 09:20:23 by plouda           ###   ########.fr       */
+/*   Updated: 2024/04/11 12:20:29 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <string>
 # include <limits>
 # include <cerrno>
+# include <cstdlib>
 # define INT_CHARS "+-0123456789"
 # define FLOAT_CHARS "+-0123456789.f"
 # define DOUBLE_CHARS "+-0123456789."
