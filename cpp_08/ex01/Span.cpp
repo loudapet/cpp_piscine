@@ -6,7 +6,7 @@
 /*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 09:35:52 by plouda            #+#    #+#             */
-/*   Updated: 2024/04/15 12:33:30 by plouda           ###   ########.fr       */
+/*   Updated: 2024/04/15 12:55:19 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,11 @@ void	Span::fillWithNumbers(int rangeFrom, int rangeTo, unsigned int span)
 		throw(std::runtime_error("Cannot fit in desired range of numbers"));
 	if (rangeFrom > rangeTo)
 		std::swap(rangeFrom, rangeTo);
+	std::vector<int> range;
+	range.reserve(rangeTo - rangeFrom);
 	for (int i = rangeFrom; i <= rangeTo; i += span)
-		addNumber(i);
+		range.push_back(i);
+	_set.insert(range.begin(), range.end());
+	/* for (int i = rangeFrom; i <= rangeTo; i += span)
+		_set.insert(i); */
 }

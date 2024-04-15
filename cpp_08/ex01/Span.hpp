@@ -6,7 +6,7 @@
 /*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 09:32:27 by plouda            #+#    #+#             */
-/*   Updated: 2024/04/15 12:04:42 by plouda           ###   ########.fr       */
+/*   Updated: 2024/04/15 12:51:00 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define SPAN_HPP
 #include <iostream>
 #include <set>
+#include <vector>
 #include <algorithm>
 #include <iterator>
 #include <climits>
