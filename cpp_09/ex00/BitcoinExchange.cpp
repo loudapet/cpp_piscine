@@ -6,7 +6,7 @@
 /*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 09:36:08 by plouda            #+#    #+#             */
-/*   Updated: 2024/04/17 18:09:47 by plouda           ###   ########.fr       */
+/*   Updated: 2024/04/18 11:17:16 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,20 @@ void	BitcoinExchange::_executeExchange(std::string& date, std::string& value)
 	std::string				exchangedAmount;
 	double					amount;
 	std::map<int, double>::iterator	iter;
+	std::map<int, double>::reverse_iterator	riter;
 	long	dateNb = std::strtol(date.c_str(), NULL, 10);
 	double	valueNb = std::strtod(value.c_str(), NULL);
-	iter = _exchangeRates.lower_bound(dateNb);
-	amount = iter->second * valueNb;
+	iter = _exchangeRates.upper_bound(dateNb);
+	if (iter == _exchangeRates.end())
+	{
+		riter = _exchangeRates.rbegin();
+		amount = riter->second * valueNb;
+	}
+	else
+	{
+		iter--;
+		amount = iter->second * valueNb;
+	}
 	sstr << amount;
 	sstr >> exchangedAmount;
 	std::cout << oldDate << " => " << value << " = " << exchangedAmount << std::endl;
@@ -61,14 +71,17 @@ static void	validateDate(std::string& date, const int lowestDate)
 {
 	std::stringstream	sstr;
 	int					lowestYear;
-	std::string			lowestYearStr;
+	std::string			lowestStr;
+	std::string			pureDate;
 	int					year;
 	int					month;
 	int					day;
 
 	lowestYear = lowestDate / 10000; // stored in format YYYYMMDD
 	sstr << lowestYear;
-	sstr >> lowestYearStr;
+	sstr >> lowestStr;
+	if (!date.size())
+		throw (std::invalid_argument("Date is empty"));
 	if (date.size() != 10 || date[4] != '-' || date[7] != '-')
 		throw (std::invalid_argument("Improper date format => " + date));
 	if (date.find_first_not_of(DATE_CHARS) != std::string::npos)
@@ -77,7 +90,7 @@ static void	validateDate(std::string& date, const int lowestDate)
 	month = std::atoi(date.substr(5, 2).c_str());
 	day = std::atoi(date.substr(8, 2).c_str());
 	if (year < lowestYear)
-		throw (std::invalid_argument("Year cannot be lower than " + lowestYearStr));
+		throw (std::invalid_argument("Year cannot be lower than " + lowestStr));
 	if (month > 12 || month < 1)
 		throw (std::invalid_argument("Month out of range => " + date));
 	if (day < 1)
@@ -89,19 +102,28 @@ static void	validateDate(std::string& date, const int lowestDate)
 		|| (((month % 2 && month < 8) || (!(month % 2) && month > 7)) && day > 31)
 		|| (((month % 2 && month > 7) || (!(month % 2) && month < 8)) && day > 30))
 		throw (std::invalid_argument("Day out of range => " + date));
+	pureDate = date;
+	pureDate.erase(std::remove(pureDate.begin(), pureDate.end(), '-'), pureDate.end()); // remove -
+	if (std::atoi(pureDate.c_str()) < lowestDate)
+		throw (std::invalid_argument("Date too low => " + date));
+
 }
 
 static void	validateValue(std::string& value)
 {
+	if (!value.size())
+		throw (std::invalid_argument("Value is empty"));
 	if (value.find_first_not_of(VALUE_CHARS) != std::string::npos
-		|| value.find_first_of('.') != value.find_last_of('.'))
+		|| value.find_first_of('.') != value.find_last_of('.')
+		|| value.find_first_of('-') != value.find_last_of('-')
+		|| (value.find_first_of('-') != 0 && value.find_first_of('-') != std::string::npos))
 		throw (std::invalid_argument("Value contains invalid characters => " + value));
 	errno = 0;
 	double	converted = strtod(value.c_str(), NULL);
 	if (errno || converted > 1000)
-		throw (std::invalid_argument("Btc value too large => " + value));
+		throw (std::invalid_argument("Value too large => " + value));
 	if (converted < 0)
-		throw (std::invalid_argument("Btc value is not positive => " + value));
+		throw (std::invalid_argument("Value is not positive => " + value));
 }
 
 void	BitcoinExchange::_processBtcValues(std::ifstream& btcValuesDB)
@@ -115,6 +137,8 @@ void	BitcoinExchange::_processBtcValues(std::ifstream& btcValuesDB)
 		std::string				value;
 		try
 		{
+			if (line.find_first_not_of("| \t\v\n\f\r") == std::string::npos)
+				throw (std::runtime_error("Line does not contain any data"));
 			if (line.find('|') == std::string::npos || line.find_first_of('|') != line.find_last_of('|')) // pipe char check
 				throw (std::runtime_error("Line not in proper 'date | value' format"));
 			std::getline(stream, date, '|'); // get everything before pipe
