@@ -6,7 +6,7 @@
 /*   By: plouda <plouda@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:05:40 by plouda            #+#    #+#             */
-/*   Updated: 2024/04/23 14:14:41 by plouda           ###   ########.fr       */
+/*   Updated: 2024/04/24 11:41:45 by plouda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,25 @@ PmergeMe::PmergeMe(int argc, const char **argv)
 	clock_t				end;
 	sstr << argc - 1;
 	sstr >> buf;
-	std::cout << "Creating vector of " + buf + " elements: ";
-	start = clock();
 	_vect.reserve(argc - 1);
 	_sortedVect.reserve(argc - 1);
 	for (int i = 1; i < argc; i++)
 		_vect.push_back(atoi(argv[i]));
-	end = clock();
-	std::cout << static_cast<double>(end - start) << " microseconds" << std::endl;
-	std::cout << "Creating deque of " + buf + " elements: ";
-	start = clock();
 	for (int i = 1; i < argc; i++)
 		_deque.push_back(atoi(argv[i]));
+	std::cout << "Before: " << _vect << std::endl;
+
+	start = clock();
+	_sort(_vect);
 	end = clock();
-	std::cout << static_cast<double>(end - start) << " microseconds" << std::endl;
-	sort(_vect);
+	std::cout << "Time to process a range of " + buf + " elements with std::vector : ";
+	std::cout << static_cast<double>(end - start) / 1000. << " ms" << std::endl;
+
+	start = clock();
+	_sort(_deque);
+	end = clock();
+	std::cout << "Time to process a range of " + buf + " elements with std::deque : ";
+	std::cout << static_cast<double>(end - start) / 1000. << " ms" << std::endl;
 	return ;
 }
 
@@ -60,111 +64,57 @@ PmergeMe::~PmergeMe()
 	return ;
 }
 
-static void	highestRecursiveInsertion(std::vector<std::pair<unsigned int, unsigned int> >& vect, unsigned int size)
-{
-    // Base case 
-    if (size <= 1) 
-        return; 
-
-    // Recursively sort the first (size - 1) elements
-    highestRecursiveInsertion(vect, size - 1);
-    std::pair<unsigned int, unsigned int> last = vect[size - 1];
-    int j = size - 2;
-
-    // Shift elements greater than last to the right
-    while (j >= 0 && vect[j].second > last.second)
-    {
-        vect[j + 1] = vect[j];
-        j--;
-    }
-    vect[j + 1] = last;
-}
-
-unsigned int	jacobNumber(unsigned int index)
+unsigned int	PmergeMe::_jacobNumber(unsigned int index)
 {
 	if (!index || index == 1)
 		return (index);
-	return (jacobNumber(index - 1) + 2 * jacobNumber(index - 2));
+	return (_jacobNumber(index - 1) + 2 * _jacobNumber(index - 2));
 }
 
-std::vector<unsigned int>	buildJacobsthalSequence(unsigned int size)
+void	PmergeMe::_sort(deque_uint_t&)
 {
-	std::vector<unsigned int>	sequence;
-	unsigned int				jacobIndex = 3;
-	
-	while (jacobNumber(jacobIndex) < size)
-	{
-		sequence.push_back(jacobNumber(jacobIndex));
-		jacobIndex++;
-	}
-	sequence.push_back(jacobNumber(jacobIndex)); // extra push for anything larger than the last Jacob number
-	return (sequence);
-}
-
-std::vector<unsigned int>	generateInsertionSequence(std::vector<unsigned int> jacobsthalSequence)
-{
-	std::vector<unsigned int>	newSequence;
-	unsigned int				prev = 1;
-	for (size_t i = 0; i < jacobsthalSequence.size(); i++)
-	{
-		if (i != 0)
-			prev = jacobsthalSequence[i - 1];
-		for (size_t j = jacobsthalSequence[i]; j > prev; j--)
-			newSequence.push_back(j);
-	}
-	for (size_t i = 0; i < newSequence.size(); i++)
-		newSequence[i] = newSequence[i] - 1; // just to have easier indexing during insertion, because 1st element is actually 1st index by default
-	return (newSequence);
-}
-
-void	displayPend(std::vector<std::pair<unsigned int,unsigned int> > pairs)
-{
-	std::cout << "Displaying pend:\t";
-	for (size_t i = 0; i < pairs.size(); i++)
-		std::cout << pairs[i].first << " ";
-	std::cout << std::endl;
-}
-
-void	displayVect(std::vector<unsigned int> vect)
-{
-	std::cout << "Displaying vect:\t";
-	for (size_t i = 0; i < vect.size(); i++)
-		std::cout << vect[i] << " ";
-	std::cout << std::endl;
-}
-
-void	insertItems(std::vector<unsigned int>& insertionSequence,
-					std::vector<std::pair<unsigned int,unsigned int> >& pend,
-					std::vector<unsigned int>& sortedVect)
-{
-	unsigned int	pendIndex = 1;
-	unsigned int	insertionIndex = 0;
-	unsigned int	item;
-	std::vector<unsigned int>::iterator	insertionPoint;
-
-	displayPend(pend);
-	displayVect(insertionSequence);
-	while (pendIndex < pend.size())
-	{
-		while (insertionSequence.size() > insertionIndex 
-			&& insertionSequence[insertionIndex] >= pend.size())
-			insertionIndex++;
-		item = pend[insertionSequence[insertionIndex]].first;
-		//std::cout << item << std::endl;
-		insertionPoint = std::lower_bound(sortedVect.begin(), sortedVect.end(), item);
-		sortedVect.insert(insertionPoint, item);
-		pendIndex++;
-		insertionIndex++;
-	}
-	displayVect(sortedVect);
-}
-
-void	PmergeMe::sort(std::vector<unsigned int>&)
-{
+	if (_deque.size() == 1)
+		return ;
 	bool				odd = false;
 	int					straggler;
-	std::vector<std::pair<unsigned int,unsigned int> >	pairs;
-	std::vector<unsigned int>	insertionSequence;
+	deque_uint_pair_t	pairs;
+	deque_uint_t		insertionSequence;
+
+	if (_deque.size() % 2)
+	{
+		straggler = *_deque.rbegin();
+		odd = true;
+		_deque.pop_back();
+	}
+	for (deque_uint_t::iterator it = _deque.begin(); it != _deque.end(); it += 2)
+	{
+		if (*it <= *(it + 1))
+			pairs.push_back(std::make_pair(*it, *(it+1)));
+		else
+			pairs.push_back(std::make_pair(*(it+1), *it));
+	}
+	_sortPairsByHighest(pairs, pairs.size());
+	for (size_t i = 0; i < pairs.size(); i++)
+		_sortedDeque.push_back(pairs[i].second);
+	_sortedDeque.insert(_sortedDeque.begin(), pairs[0].first); // insert the first pend element at the beginning of the main chain
+	insertionSequence = _buildJacobsthalSequence<deque_uint_t>(pairs.size());
+	insertionSequence = _generateInsertionSequence(insertionSequence);
+	_insertItems(insertionSequence, pairs, _sortedDeque);
+	if (odd)
+		_sortedDeque.insert(std::lower_bound(_sortedDeque.begin(), _sortedDeque.end(), straggler), straggler);
+}
+
+void	PmergeMe::_sort(vect_uint_t&)
+{
+	if (_vect.size() == 1)
+	{
+		std::cout << "After:  " << _vect.front() << std::endl;
+		return ;
+	}
+	bool				odd = false;
+	int					straggler;
+	vect_uint_pair_t	pairs;
+	vect_uint_t			insertionSequence;
 
 	if (_vect.size() % 2)
 	{
@@ -173,26 +123,53 @@ void	PmergeMe::sort(std::vector<unsigned int>&)
 		_vect.pop_back();
 	}
 	pairs.reserve(_vect.size() / 2);
-	for (std::vector<unsigned int>::iterator it = _vect.begin(); it != _vect.end(); it += 2)
+	for (vect_uint_t::iterator it = _vect.begin(); it != _vect.end(); it += 2)
 	{
 		if (*it <= *(it + 1))
 			pairs.push_back(std::make_pair(*it, *(it+1)));
 		else
 			pairs.push_back(std::make_pair(*(it+1), *it));
 	}
-	highestRecursiveInsertion(pairs, pairs.size());
+	_sortPairsByHighest(pairs, pairs.size());
 	for (size_t i = 0; i < pairs.size(); i++)
 		_sortedVect.push_back(pairs[i].second);
 	_sortedVect.insert(_sortedVect.begin(), pairs[0].first); // insert the first pend element at the beginning of the main chain
-	insertionSequence = buildJacobsthalSequence(pairs.size());
-	insertionSequence = generateInsertionSequence(insertionSequence);
-	insertItems(insertionSequence, pairs, _sortedVect);
+	insertionSequence = _buildJacobsthalSequence<vect_uint_t>(pairs.size());
+	insertionSequence = _generateInsertionSequence(insertionSequence);
+	_insertItems(insertionSequence, pairs, _sortedVect);
 	if (odd)
-	{
 		_sortedVect.insert(std::lower_bound(_sortedVect.begin(), _sortedVect.end(), straggler), straggler);
+	std::cout << "After:  " << _sortedVect << std::endl;
+}
+
+void		PmergeMe::processNumbers(int argc, const char **argv)
+{
+	if (argc < 2)
+		throw (std::runtime_error("Error: expected at least one number as argument"));
+	for (int i = 1; argv[i]; i++)
+	{
+		for (int j = 0; argv[i][j]; j++)
+		{
+			if (!isdigit(argv[i][j]))
+				throw (std::invalid_argument("Error: only positive integers allowed as arguments"));
+			if (j > 10)
+				throw (std::invalid_argument("Error: number too big"));
+		}
+		if (std::strtol(argv[i], NULL, 10) > UINT_MAX)
+			throw (std::invalid_argument("Error: number too big"));
 	}
-	std::cout << "Sorted vector:\t\t";
-	for (size_t i = 0; i < _sortedVect.size(); i++)
-	 	std::cout << _sortedVect[i] << " ";
-	std::cout << std::endl;
+}
+
+std::ostream &operator<<(std::ostream &os, vect_uint_t &vec)
+{
+	for (vect_uint_t::iterator it = vec.begin(); it != vec.end(); it++)
+		os << " " << *it;
+	return os;
+}
+
+std::ostream &operator<<(std::ostream &os, deque_uint_t &deq)
+{
+	for (deque_uint_t::iterator it = deq.begin(); it != deq.end(); it++)
+		os << " " << *it;
+	return os;
 }
